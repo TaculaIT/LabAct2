@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TaculaLA1.props" />
+</Project>
