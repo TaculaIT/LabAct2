@@ -33,69 +33,8 @@ namespace TaculaLA1.Controllers
                 Rank = Rank.AssistantProfessor,
                 IsTenured = IsTenured.Permanent,
                 HiringDate = DateOnly.Parse("01/12/2020")
-            },
-            new Instructor()
-            {
-                Id = 4,
-                FirstName = "Katy",
-                LastName = "Perry",
-                Rank = Rank.Instructor,
-                IsTenured = IsTenured.Permanent,
-                HiringDate = DateOnly.Parse("01/12/0001")
-            },
-            new Instructor()
-            {
-                Id = 5,
-                FirstName = "Dan",
-                LastName = "TDM",
-                Rank = Rank.AssociateProfessor,
-                IsTenured = IsTenured.Permanent,
-                HiringDate = DateOnly.Parse("08/9/0007")
-            },
-            new Instructor()
-            {
-                Id = 6,
-                FirstName = "Mel",
-                LastName = "Fredfonclara",
-                Rank = Rank.Professor,
-                IsTenured = IsTenured.Permanent,
-                HiringDate = DateOnly.Parse("12/10/2002")
-            },
-            new Instructor()
-            {
-                Id = 7,
-                FirstName = "Shanty",
-                LastName = "Dope",
-                Rank = Rank.Professor,
-                IsTenured = IsTenured.Probationary,
-                HiringDate = DateOnly.Parse("9/11/2002")
-            },
-            new Instructor()
-            {
-                Id = 8,
-                FirstName = "Mel",
-                LastName = "Tiangco",
-                Rank = Rank.Instructor,
-                IsTenured = IsTenured.Permanent,
-                HiringDate = DateOnly.Parse("11/12/2001")
-            },
-            new Instructor()
-            {
-                Id = 9,
-                FirstName = "King",
-                LastName = "Philips",
-                Rank = Rank.AssociateProfessor,
-                IsTenured = IsTenured.Permanent,
-                HiringDate = DateOnly.Parse("01/7/1999")
-            },
-            new Instructor()
-            {
-                Id = 10,
-                FirstName = "Benedict",
-                LastName = "Cumbingberch",
-                Rank = Rank.Instructor,
-                IsTenured = IsTenured.Probationary,
-                HiringDate = DateOnly.Parse("01/11/2020")
+            
+            
             },
         };
         public IActionResult Index()
@@ -113,10 +52,52 @@ namespace TaculaLA1.Controllers
 
             return View();
         }
+        [HttpGet]
+        public IActionResult AddInstructor()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddInstructor(Instructor newInstructor)
+        {
+            InstructorList.Add(newInstructor);
+            return View("Index", InstructorList);
+        }
+        [HttpGet]
+        public IActionResult EditInstructor(int id)
+        {
+            Instructor instructor = InstructorList.FirstOrDefault(st => st.Id == id);
+            if (instructor != null)
+            {
+                return View(instructor);
+            }
 
+            return NotFound(); 
+        }
+        [HttpPost]
+       
+        public IActionResult EditInstructor(Instructor updatedInstructor)
+        {
+            // Find the existing instructor in your data source (e.g., InstructorList)
+            Instructor existingInstructor = InstructorList.FirstOrDefault(st => st.Id == updatedInstructor.Id);
+
+            
+                
+                existingInstructor.FirstName = updatedInstructor.FirstName;
+                existingInstructor.LastName = updatedInstructor.LastName;
+                existingInstructor.IsTenured = updatedInstructor.IsTenured;
+                existingInstructor.Rank = updatedInstructor.Rank;
+                existingInstructor.HiringDate = updatedInstructor.HiringDate;
+
+
+                return View("Index", InstructorList);
+            }
+
+           
+        }
 
     }
-}
+
 
     
 
