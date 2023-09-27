@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tacula Family\\source\\repos\\TaculaLA1\\TaculaLA1\\TaculaLA1.csproj": {}
+    "C:\\Users\\Tacula Family\\source\\repos\\LabActivities\\TaculaLA1\\TaculaLA1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tacula Family\\source\\repos\\TaculaLA1\\TaculaLA1\\TaculaLA1.csproj": {
+    "C:\\Users\\Tacula Family\\source\\repos\\LabActivities\\TaculaLA1\\TaculaLA1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tacula Family\\source\\repos\\TaculaLA1\\TaculaLA1\\TaculaLA1.csproj",
+        "projectUniqueName": "C:\\Users\\Tacula Family\\source\\repos\\LabActivities\\TaculaLA1\\TaculaLA1.csproj",
         "projectName": "TaculaLA1",
-        "projectPath": "C:\\Users\\Tacula Family\\source\\repos\\TaculaLA1\\TaculaLA1\\TaculaLA1.csproj",
+        "projectPath": "C:\\Users\\Tacula Family\\source\\repos\\LabActivities\\TaculaLA1\\TaculaLA1.csproj",
         "packagesPath": "C:\\Users\\Tacula Family\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tacula Family\\source\\repos\\TaculaLA1\\TaculaLA1\\obj\\",
+        "outputPath": "C:\\Users\\Tacula Family\\source\\repos\\LabActivities\\TaculaLA1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tacula Family\\AppData\\Roaming\\NuGet\\NuGet.Config",
