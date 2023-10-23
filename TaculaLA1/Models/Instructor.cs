@@ -23,9 +23,8 @@ namespace TaculaLA1.Models
 
         public Rank Rank { get; set; }
 
-        public DateOnly HiringDate { get; set; }
+        public DateTime HiringDate { get; set; }
 
-        public string Email { get; set; }
 
     }
 }

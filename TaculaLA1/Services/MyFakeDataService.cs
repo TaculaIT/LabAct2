@@ -22,7 +22,7 @@ namespace TaculaLA1.Services
                     LastName = "Tacula",
                     Rank = Rank.Professor,
                     IsTenured = IsTenured.Permanent,
-                    HiringDate = new DateOnly(2002, 12, 10)
+                    HiringDate = DateTime.Parse("23/09/2002")
                 },
                 new Instructor()
                 {
@@ -31,7 +31,7 @@ namespace TaculaLA1.Services
                     LastName = "DanielDeCastro",
                     Rank = Rank.AssistantProfessor,
                     IsTenured = IsTenured.Permanent,
-                    HiringDate = new DateOnly(2020, 4, 1)
+                    HiringDate = DateTime.Parse("23/09/2002")
                 },
                 new Instructor()
                 {
@@ -40,7 +40,7 @@ namespace TaculaLA1.Services
                     LastName = "Tacula",
                     Rank = Rank.AssistantProfessor,
                     IsTenured = IsTenured.Permanent,
-                    HiringDate = new DateOnly(2020, 1, 12)
+                    HiringDate = DateTime.Parse("23/09/2002")
                 }
             };
 

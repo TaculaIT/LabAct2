@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TaculaLA1.Data;
 using TaculaLA1.Models;
 using TaculaLA1.Services;
 
@@ -6,21 +8,22 @@ namespace TaculaLA1.Controllers
 {
     public class InstructorController : Controller
     {
-        private readonly IMyFakeDataService _fakeData;
+        private readonly AppDBContext _dbContext;
 
-        public InstructorController(IMyFakeDataService fakeData)
+        public InstructorController(AppDBContext dbContext)
         {
-            _fakeData = fakeData;
+            _dbContext = dbContext;
         }
+
 
         public IActionResult Index()
         {
-            return View(_fakeData.InstructorList);
+            return View(_dbContext.Instructors);
         }
 
         public IActionResult ShowDetail(int id)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == id);
             if (instructor != null)
             {
                 return View(instructor);
@@ -38,13 +41,14 @@ namespace TaculaLA1.Controllers
         [HttpPost]
         public IActionResult AddInstructor(Instructor newInstructor)
         {
-            _fakeData.InstructorList.Add(newInstructor);
+            _dbContext.Instructors.Add(newInstructor);
+            _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == id);
             if (instructor != null)
             {
                 
@@ -57,7 +61,7 @@ namespace TaculaLA1.Controllers
         [HttpPost]
         public IActionResult EditInstructor(Instructor updatedInstructor)
         {
-            Instructor existingInstructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == updatedInstructor.Id);
+            Instructor existingInstructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == updatedInstructor.Id);
 
             if (existingInstructor != null)
             {
@@ -66,6 +70,7 @@ namespace TaculaLA1.Controllers
                 existingInstructor.IsTenured = updatedInstructor.IsTenured;
                 existingInstructor.Rank = updatedInstructor.Rank;
                 existingInstructor.HiringDate = updatedInstructor.HiringDate;
+                _dbContext.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -76,7 +81,7 @@ namespace TaculaLA1.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == id);
             if (instructor != null)
             {
               
@@ -89,10 +94,11 @@ namespace TaculaLA1.Controllers
         [HttpPost]
         public IActionResult DeleteInstructor(int id)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == id);
             if (instructor != null)
             {
-                _fakeData.InstructorList.Remove(instructor);
+                _dbContext.Instructors.Remove(instructor);
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using TaculaLA1.Data;
 using TaculaLA1.Models;
 using TaculaLA1.Services;
 
@@ -9,21 +10,22 @@ namespace TaculaLA1.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly IMyFakeDataService _fakeData;
+        private readonly AppDBContext _dbContext;
 
-        public StudentController(IMyFakeDataService fakeData)
+        public StudentController(AppDBContext dbContext)
         {
-            _fakeData = fakeData;
+            _dbContext = dbContext;
         }
+
 
         public IActionResult Index()
         {
-            return View(_fakeData.StudentList);
+            return View(_dbContext.Instructors);
         }
 
         public IActionResult ShowDetail(int id)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == id);
             if (student != null)
             {
                 return View(student);
@@ -41,14 +43,14 @@ namespace TaculaLA1.Controllers
         [HttpPost]
         public IActionResult AddStudent(Student newStudent)
         {
-            _fakeData.StudentList.Add(newStudent);
+            _dbContext.Students.Add(newStudent);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult EditStudent(int id)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == id);
             if (student != null)
             {
                 return View("EditStudent", student);
@@ -60,7 +62,7 @@ namespace TaculaLA1.Controllers
         [HttpPost]
         public IActionResult EditStudent(Student updatedStudent)
         {
-            Student existingStudent = _fakeData.StudentList.FirstOrDefault(st => st.Id == updatedStudent.Id);
+            Student existingStudent = _dbContext.Students.FirstOrDefault(st => st.Id == updatedStudent.Id);
 
             if (existingStudent != null)
             {
@@ -79,7 +81,7 @@ namespace TaculaLA1.Controllers
         [HttpGet]
         public IActionResult DeleteConfirmation(int id)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == id);
             if (student != null)
             {
                 return View("DeleteStudent", student);
@@ -92,10 +94,10 @@ namespace TaculaLA1.Controllers
         [HttpPost]
         public IActionResult DeleteStudent(int id)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == id);
             if (student != null)
             {
-                _fakeData.StudentList.Remove(student);
+                _dbContext.Students.Remove(student);
                 return RedirectToAction("Index");
             }
 
