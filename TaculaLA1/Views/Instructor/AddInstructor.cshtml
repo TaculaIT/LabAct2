@@ -1,17 +1,16 @@
 ﻿@model TaculaLA1.Models.Instructor
 
 <form asp-action="AddInstructor" method="post">
-    <div class="form-group">
-        <label asp-for="Id">ID</label>
-        <input asp-for="Id" class="form-control" />
-    </div>
+   
     <div class="form-group">
         <label asp-for="FirstName">First Name</label>
         <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="LastName">Last Name</label>
         <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="IsTenured">Status</label>
@@ -21,6 +20,7 @@
                 <option value="@IsTenured">@IsTenured</option>
             }
         </select>
+        <span asp-validation-for="IsTenured" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="Rank">Rank</label>
@@ -30,14 +30,12 @@
                 <option value="@rank">@rank</option>
             }
         </select>
+        <span asp-validation-for="Rank" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="HiringDate">Hiring Date</label>
-        <input type="date" class="form-control" id="HiringDate">
+        <input type="date" asp-for="HiringDate" class="form-control" />
+        <span asp-validation-for="HiringDate" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-   
-
-

@@ -4,6 +4,7 @@ using TaculaLA1.Data;
 using TaculaLA1.Models;
 using TaculaLA1.Services;
 
+
 namespace TaculaLA1.Controllers
 {
     public class InstructorController : Controller
@@ -41,6 +42,9 @@ namespace TaculaLA1.Controllers
         [HttpPost]
         public IActionResult AddInstructor(Instructor newInstructor)
         {
+            if (!ModelState.IsValid)
+                return View();
+
             _dbContext.Instructors.Add(newInstructor);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
@@ -61,6 +65,8 @@ namespace TaculaLA1.Controllers
         [HttpPost]
         public IActionResult EditInstructor(Instructor updatedInstructor)
         {
+            if (!ModelState.IsValid) { return View(); }
+               
             Instructor existingInstructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == updatedInstructor.Id);
 
             if (existingInstructor != null)

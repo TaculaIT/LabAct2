@@ -25,6 +25,7 @@ app.UseHttpsRedirection();
 
 var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDBContext>();
 context.Database.EnsureCreated();
+//context.Database.EnsureDeleted();
 
 app.UseStaticFiles();
 

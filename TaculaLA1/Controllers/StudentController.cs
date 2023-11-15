@@ -20,8 +20,10 @@ namespace TaculaLA1.Controllers
 
         public IActionResult Index()
         {
-            return View(_dbContext.Instructors);
+            List<Student> studentsList = _dbContext.Students.ToList(); // Retrieve the list of students from the database
+            return View(studentsList);
         }
+
 
         public IActionResult ShowDetail(int id)
         {
@@ -43,8 +45,13 @@ namespace TaculaLA1.Controllers
         [HttpPost]
         public IActionResult AddStudent(Student newStudent)
         {
+            if (!ModelState.IsValid) { 
+                return View();
+            }
             _dbContext.Students.Add(newStudent);
+            _dbContext.SaveChanges();
             return RedirectToAction("Index");
+            
         }
 
         [HttpGet]
@@ -63,7 +70,8 @@ namespace TaculaLA1.Controllers
         public IActionResult EditStudent(Student updatedStudent)
         {
             Student existingStudent = _dbContext.Students.FirstOrDefault(st => st.Id == updatedStudent.Id);
-
+            if (!ModelState.IsValid) { return View(); }
+               
             if (existingStudent != null)
             {
                 existingStudent.Name = updatedStudent.Name;
