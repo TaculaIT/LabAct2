@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.EntityFrameworkCore;
 using TaculaLA1.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TaculaLA1.Data
 {
-    public class AppDBContext : DbContext
+    public class AppDBContext : IdentityDbContext<User>
     {
         public DbSet<Student> Students { get; set; }
 

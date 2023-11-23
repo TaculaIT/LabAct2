@@ -1,0 +1,61 @@
+﻿@model TaculaLA1.ViewModels.RegisterViewModel
+
+<h1>Register a new account</h1>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">@ViewData["Title"]</h2>
+
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label">Username</label>
+                    <input asp-for="Username" class="form-control" required />
+                    <div class="invalid-feedback">@Html.ValidationMessageFor(model => model.Username)</div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input asp-for="Password" type="password" class="form-control" required />
+                    <div class="invalid-feedback">@Html.ValidationMessageFor(model => model.Password)</div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" required />
+                    <div class="invalid-feedback">@Html.ValidationMessageFor(model => model.ConfirmPassword)</div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="FirstName" class="form-label">First Name</label>
+                    <input asp-for="FirstName" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="LastName" class="form-label">Last Name</label>
+                    <input asp-for="LastName" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="EmailAddress" class="form-label">Email Address</label>
+                    <input asp-for="EmailAddress" type="email" class="form-control" required />
+                    <div class="invalid-feedback">@Html.ValidationMessageFor(model => model.EmailAddress)</div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                    <input asp-for="PhoneNumber" class="form-control" pattern="^\d{10}$" />
+                    <div class="invalid-feedback">@Html.ValidationMessageFor(model => model.PhoneNumber)</div>
+                    <small class="text-muted">Please enter a 10-digit phone number.</small>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
